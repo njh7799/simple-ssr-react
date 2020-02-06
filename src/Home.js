@@ -1,5 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default props => {
-  return <h1>Hello {props.name}!</h1>;
+  return <Title>Hi {props.name}!</Title>;
 };
+
+const Title = styled.h1`
+  color: blue;
+`;

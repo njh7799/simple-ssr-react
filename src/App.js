@@ -4,3 +4,4 @@ import Home from './Home';
 export default () => {
   return <Home name='Alligator' />;
 };
+  
