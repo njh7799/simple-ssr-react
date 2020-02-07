@@ -13,25 +13,22 @@ const app = express();
 
 app.use(express.static('./build'));
 
+const html = fs.readFileSync(path.resolve('./build/index.html'), 'utf8');
+
 app.get('/*', (req, res) => {
+  if (!html) return res.status(500).send('Oops, better luck next time!');
   const sheet = new ServerStyleSheet();
   const app = ReactDOMServer.renderToString(sheet.collectStyles(<App />));
   const styleTags = sheet.getStyleTags();
   sheet.seal();
-
-  const indexFile = path.resolve('./build/index.html');
-  fs.readFile(indexFile, 'utf8', (err, html) => {
-    if (err) {
-      console.error('Something went wrong:', err);
-      return res.status(500).send('Oops, better luck next time!');
-    }
-    return res.send(
-      html
-        .replace('<style id="ssr-css"></style>', styleTags)
-        .replace('<div id="root"></div>', `<div id="root">${app}</div>`),
-    );
-  });
+  return res.send(
+    html.replace(
+      '<div id="root"></div>',
+      `<div id="root">${styleTags}${app}</div>`,
+    ),
+  );
 });
+
 app.listen(PORT, () => {
   console.log(`😎 Server is listening on port ${PORT}`);
 });
