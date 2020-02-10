@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './Home';
 
-export default () => {
-  return <Home name='Alligator' />;
+export default ({ data }) => {
+  const { name } = data;
+  return <Home name={name} />;
 };
-  
