@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default ({ name }) => {
+export default () => {
   function nameClickHandler() {
-    alert(name);
+    alert('Hi');
   }
-  return <Title onClick={nameClickHandler}>Hi {name}!</Title>;
+  return <Title onClick={nameClickHandler}>Hi !</Title>;
 };
 
 const Title = styled.h1`

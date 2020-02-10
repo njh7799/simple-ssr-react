@@ -1,7 +1,8 @@
 import React from 'react';
-import Home from './Home';
+import { renderRoutes } from 'react-router-config';
+import { Switch } from 'react-router-dom';
+import Routes from './routes';
 
-export default ({ data }) => {
-  const { name } = data;
-  return <Home name={name} />;
+export default () => {
+  return <Switch>{renderRoutes(Routes)}</Switch>;
 };
