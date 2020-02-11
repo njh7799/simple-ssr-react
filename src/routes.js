@@ -1,6 +1,6 @@
-// shared/routes.js
 import Home from './Home';
 import About from './About';
+import NotFound from './NotFound';
 
 const routes = [
   {
@@ -11,6 +11,9 @@ const routes = [
   {
     path: '/about',
     component: About,
+  },
+  {
+    component: NotFound,
   },
 ];
 

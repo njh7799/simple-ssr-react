@@ -6,10 +6,9 @@ import express from 'express';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
 import serialize from 'serialize-javascript';
-import { matchPath, StaticRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 
 import App from '../src/App';
-import routes from '../src/routes';
 
 const PORT = 3006;
 const app = express();
@@ -20,8 +19,6 @@ const html = fs.readFileSync(path.resolve('./build/index.html'), 'utf8');
 
 app.get('*', (req, res) => {
   if (!html) return res.status(500).send('Oops, better luck next time!');
-
-  const activeRoute = routes.find(route => matchPath(req.url, route)) || {};
 
   const data = req.query;
   const sheet = new ServerStyleSheet();
